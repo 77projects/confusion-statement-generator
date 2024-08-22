@@ -1,12 +1,12 @@
 import random
 
 # Lists of sentence fragments and thematic words
-time_fragments = ["yesterday's tomorrow", "the future's past", "time's river", "a fleeting moment", "a distant echo", "a forgotten memory", "a recurring dream", "a fading echo", "a timeless artifact", "a fleeting glimpse"]
-meaning_fragments = ["a phantom", "a mirage", "an illusion", "a paradox", "a contradiction", "a mystery", "an enigma", "a conundrum", "a puzzle", "a riddle"]
+time_fragments = ["the future's past", "time's river", "a fleeting moment", "a distant echo", "a forgotten memory", "a recurring dream", "a fading echo", "a timeless artifact", "a fleeting glimpse"]
+meaning_fragments = ["phantom", "mirage", "an illusion", "paradox", "contradiction", "mystery", "enigma", "conundrum", "puzzle", "riddle"]
 feeling_fragments = ["bittersweet taste", "haunting memory", "fleeting moment", "lingering sensation", "persistent feeling", "vague impression", "faint recollection", "subtle hint", "unconscious thought", "subliminal message"]
-bypass_fragments = ["wich lets me just", "that allows me to just", "that gives me the ability to just", "that brings me to just", "that leads me to just", "createing a sense to just"]
+bypass_fragments = ["which lets me just", "that allows me to just", "that gives me the ability to just", "that brings me to just", "that leads me to just", "creating a sense to kinda"]
 commands = [
-    "Breathe deeply.", 
+    "Breathe deeply.",
     "Relax completely.",
     "Empty my mind.",
     "Drift away.",
@@ -19,7 +19,7 @@ commands = [
     "Let go.",
     "Imagine peace.",
     "Find stillness.",
-    "Surrender.",
+    "Surrender compleatly.",
     "Be at one.",
     "Release worry.",
     "Find serenity.",
@@ -51,10 +51,23 @@ commands = [
 ]
 
 def generate_confusing_sentence():
-  """Generates a confusing sentence by combining random fragments."""
-  sentence = random.choice(time_fragments) + " is " + random.choice(meaning_fragments) + " of " + random.choice(feeling_fragments) + " " + random.choice(bypass_fragments) + " " + random.choice(commands)
-  return sentence
+    """Generates a confusing sentence by combining random fragments in a more structured way."""
+    sentence_structure = random.choice([
+        "{time_fragment} is a {meaning_fragment} of {feeling_fragment} {bypass_fragment} {command}",
+        "The {feeling_fragment} of a {time_fragment} is a {meaning_fragment} {bypass_fragment} {command}",
+        "A {meaning_fragment} emerges from the {feeling_fragment} of a {time_fragment} {bypass_fragment} {command}"
+    ])
+    sentence = sentence_structure.format(
+        time_fragment=random.choice(time_fragments),
+        meaning_fragment=random.choice(meaning_fragments),
+        feeling_fragment=random.choice(feeling_fragments),
+        command=random.choice(commands),
+        bypass_fragment=random.choice(bypass_fragments)
+    )
+    return sentence
 
 # Generate and print a few sentences
-
-print(generate_confusing_sentence())
+x = input("number of sentences you want to print: ")
+for i in range(int(x)):
+    print(generate_confusing_sentence())
+    print(" ")
