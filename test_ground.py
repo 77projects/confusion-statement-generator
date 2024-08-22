@@ -53,9 +53,9 @@ commands = [
 def generate_confusing_sentence():
     """Generates a confusing sentence by combining random fragments in a more structured way."""
     sentence_structure = random.choice([
-        "{time_fragment} is a {meaning_fragment} of {feeling_fragment} {bypass_fragment} {command}",
-        "The {feeling_fragment} of a {time_fragment} is a {meaning_fragment} {bypass_fragment} {command}",
-        "A {meaning_fragment} emerges from the {feeling_fragment} of a {time_fragment} {bypass_fragment} {command}"
+        "{time_fragment} is {meaning_fragment} of {feeling_fragment} {bypass_fragment} {command}",
+        "The {feeling_fragment} of {time_fragment} is a {meaning_fragment} {bypass_fragment} {command}",
+        "A {meaning_fragment} emerges from the {feeling_fragment} of {time_fragment} {bypass_fragment} {command}"
     ])
     sentence = sentence_structure.format(
         time_fragment=random.choice(time_fragments),
