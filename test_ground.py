@@ -19,7 +19,7 @@ commands = [
     "Let go.",
     "Imagine peace.",
     "Find stillness.",
-    "Surrender compleatly.",
+    "Surrender completely.",
     "Be at one.",
     "Release worry.",
     "Find serenity.",
@@ -50,6 +50,15 @@ commands = [
     "Be here now.",
 ]
 
+# Hypnosis metaphor lists
+covert_objects = ["cloud", "leaf", "feather", "bubble", "kite", "balloon", "boat", "sail", "butterfly", "bird", "flower", "seed"]
+focus_objects = ["laser", "arrow", "telescope", "spotlight", "magnifying glass", "compass", "watch", "clock", "ruler", "pencil"]
+covert_actions = ["drifting", "floating", "wandering", "meandering", "soaring", "gliding", "sailing", "flying", "dancing", "swaying"]
+focus_actions = ["aiming", "targeting", "zeroing in", "honing in", "focusing", "concentrating", "meditating", "contemplating"]
+covert_states = ["relaxation", "ease", "comfort", "tranquility", "peace", "serenity", "calmness", "quietude", "contentment", "bliss"]
+focus_states = ["focus", "clarity", "sharpness", "precision", "keenness", "acuity", "awareness", "alertness", "vigilance", "intent"]
+intro_phrases = ["I visualize myself as", "I picture myself as", "I envision myself as", "I see myself as", "I perceive myself as", "I imagine myself to be"]
+
 def generate_confusing_sentence():
     """Generates a confusing sentence by combining random fragments in a more structured way."""
     sentence_structure = random.choice([
@@ -66,8 +75,37 @@ def generate_confusing_sentence():
     )
     return sentence
 
-# Generate and print a few sentences
-x = input("number of sentences you want to print: ")
-for i in range(int(x)):
-    print(generate_confusing_sentence())
+def generate_hypnosis_metaphor(metaphor_type):
+    """Generates a hypnosis metaphor based on the specified type."""
+    if metaphor_type == "covert":
+        # Use the covert metaphor generator
+        objects = covert_objects
+        actions = covert_actions
+        states = covert_states
+        return f"{random.choice(intro_phrases)} a {random.choice(objects)}, gently {random.choice(actions)} on a warm breeze. Feeling the {random.choice(states)}."
+    elif metaphor_type == "focus":
+        # Use the focus-based metaphor generator
+        objects = focus_objects
+        actions = focus_actions
+        states = focus_states
+        return f"{random.choice(intro_phrases)} a {random.choice(objects)}, {random.choice(actions)} on a specific target. Feeling the {random.choice(states)}."
+    else:
+        raise ValueError("Invalid metaphor type. Please choose 'covert' or 'focus'.")
+
+def generate_sentence(sentence_type):
+    """Generates a sentence based on the specified type."""
+    if sentence_type == "confusing":
+        return generate_confusing_sentence()
+    elif sentence_type == "metaphor":
+        return generate_hypnosis_metaphor("covert")  # Assuming you want covert metaphors
+    else:
+        raise ValueError("Invalid sentence type. Please choose 'confusing' or 'metaphor'.")
+
+# Get user input for the desired sentence type
+sentence_type = input("Please select a sentence type (confusing or metaphor): ")
+
+# Generate and print the desired number of sentences
+x = int(input("How many sentences do you want to generate? "))
+for i in range(x):
+    print(generate_sentence(sentence_type))
     print(" ")
