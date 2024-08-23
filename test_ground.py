@@ -92,23 +92,25 @@ def generate_hypnosis_metaphor(metaphor_type):
     else:
         raise ValueError("Invalid metaphor type. Please choose 'covert' or 'focus'.")
 
-def generate_sentence(sentence_type):
+def generate_sentence(sentence_type, metaphor_type):
     """Generates a sentence based on the specified type."""
     if sentence_type == "confusing":
         return generate_confusing_sentence()
     elif sentence_type == "metaphor":
-        return generate_hypnosis_metaphor("covert")  # Assuming you want covert metaphors
+        return generate_hypnosis_metaphor(metaphor_type)  # Assuming you want covert metaphors
     else:
         raise ValueError("Invalid sentence type. Please choose 'confusing' or 'metaphor'.")
 
 # Get user input for the desired sentence type
-sentence_type = input("Please select a PSYOP type (confusing or metaphor): ").strip()
+sentence_type = input("Please select a sentence type (confusing statement or metaphor): ").strip()
 
 # Generate and print the desired number of sentences
 try:
     x = int(input("How many sentences do you want to generate? "))
     for i in range(x):
-        print(generate_sentence(sentence_type))
+        if sentence_type == "metaphor":
+            metaphor_type = input("Please select a metaphor type (covert or focus): ").strip()
+        print(generate_sentence(sentence_type, metaphor_type))
         print(" ")
 except ValueError as e:
     print(f"Error: {e}")
