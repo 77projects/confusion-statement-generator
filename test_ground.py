@@ -102,10 +102,13 @@ def generate_sentence(sentence_type):
         raise ValueError("Invalid sentence type. Please choose 'confusing' or 'metaphor'.")
 
 # Get user input for the desired sentence type
-sentence_type = input("Please select a sentence type (confusing or metaphor): ")
+sentence_type = input("Please select a PSYOP type (confusing or metaphor): ").strip()
 
 # Generate and print the desired number of sentences
-x = int(input("How many sentences do you want to generate? "))
-for i in range(x):
-    print(generate_sentence(sentence_type))
-    print(" ")
+try:
+    x = int(input("How many sentences do you want to generate? "))
+    for i in range(x):
+        print(generate_sentence(sentence_type))
+        print(" ")
+except ValueError as e:
+    print(f"Error: {e}")
