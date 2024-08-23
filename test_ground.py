@@ -51,11 +51,11 @@ commands = [
 ]
 
 # Hypnosis metaphor lists
-covert_objects = ["cloud", "leaf", "feather", "bubble", "kite", "balloon", "boat", "sail", "butterfly", "bird", "flower", "seed"]
+relax_objects = ["cloud", "leaf", "feather", "bubble", "kite", "balloon", "boat", "sail", "butterfly", "bird", "flower", "seed"]
 focus_objects = ["laser", "arrow", "telescope", "spotlight", "magnifying glass", "compass", "watch", "clock", "ruler", "pencil"]
-covert_actions = ["drifting", "floating", "wandering", "meandering", "soaring", "gliding", "sailing", "flying", "dancing", "swaying"]
+relax_actions = ["drifting", "floating", "wandering", "meandering", "soaring", "gliding", "sailing", "flying", "dancing", "swaying"]
 focus_actions = ["aiming", "targeting", "zeroing in", "honing in", "focusing", "concentrating", "meditating", "contemplating"]
-covert_states = ["relaxation", "ease", "comfort", "tranquility", "peace", "serenity", "calmness", "quietude", "contentment", "bliss"]
+relax_states = ["relaxation", "ease", "comfort", "tranquility", "peace", "serenity", "calmness", "quietude", "contentment", "bliss"]
 focus_states = ["focus", "clarity", "sharpness", "precision", "keenness", "acuity", "awareness", "alertness", "vigilance", "intent"]
 intro_phrases = ["I visualize myself as", "I picture myself as", "I envision myself as", "I see myself as", "I perceive myself as", "I imagine myself to be"]
 
@@ -77,39 +77,42 @@ def generate_confusing_sentence():
 
 def generate_hypnosis_metaphor(metaphor_type):
     """Generates a hypnosis metaphor based on the specified type."""
-    if metaphor_type == "covert":
-        # Use the covert metaphor generator
-        objects = covert_objects
-        actions = covert_actions
-        states = covert_states
-        return f"{random.choice(intro_phrases)} a {random.choice(objects)}, gently {random.choice(actions)} on a warm breeze. Feeling the {random.choice(states)}."
+    if metaphor_type == "relax":
+        # Use the relax metaphor generator
+        objects = relax_objects
+        actions = relax_actions
+        states = relax_states
+        return f"{random.choice(intro_phrases)} a {random.choice(objects)}, gently {random.choice(actions)} on a warm breeze. Feeling the {random.choice(relax_states)}."
     elif metaphor_type == "focus":
         # Use the focus-based metaphor generator
         objects = focus_objects
         actions = focus_actions
         states = focus_states
-        return f"{random.choice(intro_phrases)} a {random.choice(objects)}, {random.choice(actions)} on a specific target. Feeling the {random.choice(states)}."
+        return f"{random.choice(intro_phrases)} a {random.choice(objects)}, {random.choice(actions)} on a specific target. Feeling the {random.choice(focus_states)}."
     else:
-        raise ValueError("Invalid metaphor type. Please choose 'covert' or 'focus'.")
+        raise ValueError("Invalid metaphor type. Please choose 'relax' or 'focus'.")
 
 def generate_sentence(sentence_type, metaphor_type):
     """Generates a sentence based on the specified type."""
     if sentence_type == "confusing":
         return generate_confusing_sentence()
     elif sentence_type == "metaphor":
-        return generate_hypnosis_metaphor(metaphor_type)  # Assuming you want covert metaphors
+        return generate_hypnosis_metaphor(metaphor_type)
     else:
         raise ValueError("Invalid sentence type. Please choose 'confusing' or 'metaphor'.")
 
 # Get user input for the desired sentence type
-sentence_type = input("Please select a sentence type (confusing statement or metaphor): ").strip()
+sentence_type = input("Please select a sentence type (confusing or metaphor): ").strip()
 
-# Generate and print the desired number of sentences
+# Get user input for the desired number of sentences
 try:
     x = int(input("How many sentences do you want to generate? "))
+    if sentence_type == "metaphor":
+        
+        metaphor_type = input("Please select a metaphor type (relax or focus): ").strip()  # Prompt for metaphor type outside the loop
+    else:
+        metaphor_type = None
     for i in range(x):
-        if sentence_type == "metaphor":
-            metaphor_type = input("Please select a metaphor type (covert or focus): ").strip()
         print(generate_sentence(sentence_type, metaphor_type))
         print(" ")
 except ValueError as e:
